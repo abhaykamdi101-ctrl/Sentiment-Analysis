@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analyzer</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="container">
+
+        <header class="header">
+            <h1>Sentiment Analyzer</h1>
+            <p>Discover the sentiment behind your text.</p>
+        </header>
+
+        <section class="input-card">
+            <label for="text-input">Enter your text</label>
+
+            <textarea
+                id="text-input"
+                placeholder="Type or paste your text here..."
+                maxlength="{{ max_chars }}"
+            ></textarea>
+
+            <div class="input-footer">
+                <span id="char-count">0 / {{ max_chars }}</span>
+
+                <div class="actions">
+                    <button id="clear-btn" class="clear-btn" type="button">
+                        Clear
+                    </button>
+
+                    <button id="analyze-btn" class="analyze-btn" type="button">
+                        Analyze Sentiment
+                    </button>
+                </div>
+            </div>
+
+            <p id="error" class="error" role="alert"></p>
+        </section>
+
+        <section id="results" class="results hidden">
+            <h2>Analysis Results</h2>
+
+            <div class="result-card">
+                <span class="result-label">Detected sentiment</span>
+                <h3 id="label">Neutral</h3>
+
+                <div class="score-row">
+                    <span>Polarity score</span>
+                    <strong id="score">0.000</strong>
+                </div>
+
+                <div class="gauge">
+                    <div class="gauge-track"></div>
+                    <div class="gauge-center"></div>
+                    <div id="gauge-marker" class="gauge-marker"></div>
+                </div>
+
+                <div class="gauge-labels">
+                    <span>Negative (-1)</span>
+                    <span>Neutral (0)</span>
+                    <span>Positive (+1)</span>
+                </div>
+            </div>
+
+            <div class="phrase-grid">
+                <div class="phrase-card">
+                    <h3>Positive sentences</h3>
+                    <ul id="positive-list"></ul>
+                </div>
+
+                <div class="phrase-card">
+                    <h3>Negative sentences</h3>
+                    <ul id="negative-list"></ul>
+                </div>
+            </div>
+
+            <p class="note">
+                Polarity indicates the direction and strength of sentiment.
+                It is not a confidence score.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
