@@ -1,9 +1,4 @@
-"""Sentiment Analyzer - Flask backend.
 
-Routes
-    GET  /          -> serves the web page
-    POST /analyze   -> accepts {"text": "..."} and returns sentiment JSON
-"""
 
 from flask import Flask, jsonify, render_template, request
 from textblob import TextBlob
